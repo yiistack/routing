@@ -20,4 +20,4 @@ If you don't have any particular package in mind to start with:
 
 - [Check roadmap](https://github.com/yiisoft/docs/blob/master/003-roadmap.md).
 - Check package issues at github. Usually there are some.
-- Ask @samdark.
+- Ask @rustamwin.
