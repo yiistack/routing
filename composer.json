@@ -6,7 +6,7 @@
         "routing"
     ],
     "homepage": "https://www.yiiframework.com/",
-    "license": "BSD-3-Clause",
+    "license": "MIT",
     "support": {
         "issues": "https://github.com/yiistack/routing/issues?state=open",
         "forum": "https://www.yiiframework.com/forum/",
