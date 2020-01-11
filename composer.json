@@ -15,7 +15,8 @@
         "source": "https://github.com/yiistack/routing"
     },
     "require": {
-        "php": "^7.4"
+        "php": "^7.4",
+        "doctrine/annotations": "^1.8"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.4",
