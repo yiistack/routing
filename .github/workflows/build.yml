@@ -88,11 +88,11 @@ jobs:
                     SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
                 uses: pullreminders/slack-action@master
                 with:
-                    args: '{\"channel\":\"C013Y143RJS\",\"text\":\"Success: https://github.com/$GITHUB_REPOSITORY/runs/$GITHUB_RUN_ID\"}'
+                    args: '{"channel":"C013Y143RJS","text":"Success: https://github.com/$GITHUB_REPOSITORY/runs/$GITHUB_RUN_ID"}'
             -   name: Notify slack
                 if: ${{ failure() }}
                 env:
                     SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
                 uses: pullreminders/slack-action@master
                 with:
-                    args: '{\"channel\":\"C014UHWPYTS\",\"text\":\"Error: https://github.com/${{ env.GITHUB_REPOSITORY }}/runs/${{ env.GITHUB_RUN_ID }}\"}'
+                    args: '{"channel":"C014UHWPYTS","text":"Error: https://github.com/$GITHUB_REPOSITORY/runs/$GITHUB_RUN_ID}'
