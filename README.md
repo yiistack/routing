@@ -6,7 +6,7 @@
     <br>
 </p>
 
-The package ...
+The package Routing
 
 [![Latest Stable Version](https://poser.pugx.org/yiistack/routing/v/stable.png)](https://packagist.org/packages/yiistack/routing)
 [![Total Downloads](https://poser.pugx.org/yiistack/routing/downloads.png)](https://packagist.org/packages/yiistack/routing)
