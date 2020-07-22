@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Yiistack\Routing\Annotation;
 
 
- class Action
+class Action
 {
     protected array $methods;
 

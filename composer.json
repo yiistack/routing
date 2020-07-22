@@ -1,11 +1,12 @@
 {
     "name": "yiistack/routing",
     "type": "library",
-    "description": "Yii 3.0 routing",
+    "description": "Yii 3.0 annotated routing",
     "keywords": [
         "routing",
+        "router",
         "annotation",
-        "router-annotated"
+        "annotated"
     ],
     "homepage": "https://github.com/yiistack",
     "license": "MIT",
@@ -13,10 +14,11 @@
         "issues": "https://github.com/yiistack/routing/issues?state=open",
         "source": "https://github.com/yiistack/routing"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
-        "php": "^7.4",
-        "doctrine/annotations": "^1.8",
-        "spiral/tokenizer": "^2.1",
+        "php": "^7.4|^8.0",
+        "yiistack/annotated": "1.0.x-dev",
         "yiisoft/http": "1.0.x-dev"
     },
     "require-dev": {

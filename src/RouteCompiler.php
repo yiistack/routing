@@ -4,22 +4,23 @@ declare(strict_types=1);
 
 namespace Yiistack\Routing;
 
-
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use Spiral\Tokenizer\ClassLocator;
 use Symfony\Component\Finder\Finder;
+use Yiistack\Annotated\AnnotationLoader;
+use Yiistack\Routing\Annotation\Action;
 use Yiistack\Routing\Annotation\Controller;
 
 class RouteCompiler
 {
-    private array $controllerPath;
     private AnnotationReader $reader;
+    private AnnotationLoader $loader;
 
-    public function __construct(array $controllerPath = [])
+    public function __construct(AnnotationLoader $loader, AnnotationReader $reader = null)
     {
-        $this->reader = new AnnotationReader();
-        $this->controllerPath = $controllerPath;
+        $this->loader = $loader;
+        $this->reader = $reader ?? new AnnotationReader();
     }
 
     public function compile()
@@ -28,7 +29,7 @@ class RouteCompiler
         AnnotationRegistry::registerUniqueLoader('class_exists');
 
         $compiledRoutes = [];
-        foreach ($this->getClassLocator()->getClasses() as $class) {
+        foreach ($this->loader->findClasses(Action::class) as $class) {
             /** @var Controller $c */
             $c = $this->reader->getClassAnnotation($class, Controller::class);
             $actions = [];
@@ -42,13 +43,4 @@ class RouteCompiler
         }
         return $compiledRoutes;
     }
-
-    private function getClassLocator()
-    {
-        $finder = (new Finder())->files()->in($this->controllerPath)->name('*.php');
-
-        return new ClassLocator($finder);
-    }
-
-
 }
