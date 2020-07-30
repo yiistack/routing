@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Yiistack\Routing\Tests\Data;
 
@@ -7,8 +8,6 @@ use Yiistack\Routing\Annotation\Controller;
 use Yiistack\Routing\Annotation\Get;
 
 /**
- * Class TesController
- * @package Yiistack\Routing\Tests\Data
  * @Controller("test")
  */
 class TestController

@@ -4,13 +4,7 @@ declare(strict_types=1);
 
 namespace Yiistack\Routing\Annotation;
 
-
-class Action
+abstract class Action
 {
-    protected array $methods;
-
-    public function getMethods(): array
-    {
-        return $this->methods;
-    }
+    abstract public function getMethods(): array;
 }

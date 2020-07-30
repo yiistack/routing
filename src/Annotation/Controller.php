@@ -10,7 +10,7 @@ use Doctrine\Common\Annotations\Annotation\Target;
  * @Annotation
  * @Target("CLASS")
  */
-class Controller
+final class Controller
 {
     private string $route;
     private array $middlewares;
