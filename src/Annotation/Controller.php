@@ -14,7 +14,6 @@ final class Controller
 {
     private string $route;
     private array $middlewares;
-    private array $actions = [];
 
     public function __construct(array $values)
     {
@@ -29,10 +28,5 @@ final class Controller
     public function getRoute(): string
     {
         return $this->route;
-    }
-
-    public function addActions(array $actions)
-    {
-        $this->actions = array_merge($this->actions, $actions);
     }
 }
