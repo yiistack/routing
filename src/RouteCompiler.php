@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Yiistack\Routing;
 
 use Doctrine\Common\Annotations\AnnotationRegistry;
+use ReflectionClass;
 use Yiisoft\Router\Group;
 use Yiisoft\Router\Route;
+use Yiistack\Annotated\AnnotatedClass;
 use Yiistack\Annotated\AnnotatedMethod;
 use Yiistack\Annotated\AnnotationLoader;
 use Yiistack\Routing\Annotation\Action;
@@ -30,17 +32,18 @@ class RouteCompiler
         $controllers = $this->loader->findClasses(Controller::class);
         $actions = $this->loader->findMethods(Action::class);
         foreach ($controllers as $annotatedClass) {
-            $controller = $annotatedClass->getAnnotation();
-            $controllerActions = $this->findControllerActions($annotatedClass->getClass(), $actions);
+            $controllerClass = $annotatedClass->getClass();
+            $annotation = $annotatedClass->getAnnotation();
+            $controllerActions = $this->findControllerActions($controllerClass, $actions);
             $compiledRoutes[] = Group::create(
-                $controller->getRoute(),
-                static function (Group $group) use ($controller, $controllerActions) {
+                $annotation->getRoute(),
+                static function (Group $group) use ($controllerClass, $controllerActions) {
                     foreach ($controllerActions as $controllerAction) {
                         $group->addRoute(
                             Route::methods(
-                                $controllerAction->getMethods(),
-                                $controllerAction->getRoute(),
-                                [$controller->getClass()->getName(), $controllerAction->getMethod()->getName()]
+                                $controllerAction->getAnnotation()->getMethods(),
+                                $controllerAction->getAnnotation()->getRoute(),
+                                [$controllerAction->getClass()->getName(), $controllerAction->getMethod()->getShortName()]
                             )
                         );
                     }
@@ -51,14 +54,14 @@ class RouteCompiler
     }
 
     /**
-     * @param $controller
-     * @param $actions
+     * @param ReflectionClass $controller
+     * @param AnnotatedMethod[] $actions
      * @return iterable|AnnotatedMethod[]
      */
-    private function findControllerActions($controller, $actions): iterable
+    private function findControllerActions(ReflectionClass $controller, iterable $actions): iterable
     {
         foreach ($actions as $action) {
-            if ($action->getClass()->getName() === $controller) {
+            if ($action->getClass()->getName() === $controller->getName()) {
                 yield $action;
             }
         }

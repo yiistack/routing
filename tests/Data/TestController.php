@@ -15,7 +15,7 @@ class TestController
     /**
      * @Get("/hello")
      */
-    private function hello()
+    public function hello(): string
     {
         return 'hello';
     }
