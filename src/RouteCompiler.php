@@ -8,7 +8,6 @@ use Doctrine\Common\Annotations\AnnotationRegistry;
 use ReflectionClass;
 use Yiisoft\Router\Group;
 use Yiisoft\Router\Route;
-use Yiistack\Annotated\AnnotatedClass;
 use Yiistack\Annotated\AnnotatedMethod;
 use Yiistack\Annotated\AnnotationLoader;
 use Yiistack\Routing\Annotation\Action;
@@ -23,7 +22,7 @@ class RouteCompiler
         $this->loader = $loader;
     }
 
-    public function compile()
+    public function compile(): array
     {
         // autoload
         AnnotationRegistry::registerUniqueLoader('class_exists');
@@ -33,17 +32,20 @@ class RouteCompiler
         $actions = $this->loader->findMethods(Action::class);
         foreach ($controllers as $annotatedClass) {
             $controllerClass = $annotatedClass->getClass();
-            $annotation = $annotatedClass->getAnnotation();
+            $controller = $annotatedClass->getAnnotation();
             $controllerActions = $this->findControllerActions($controllerClass, $actions);
             $compiledRoutes[] = Group::create(
-                $annotation->getRoute(),
-                static function (Group $group) use ($controllerClass, $controllerActions) {
+                $controller->getRoute(),
+                static function (Group $group) use ($controllerActions) {
                     foreach ($controllerActions as $controllerAction) {
                         $group->addRoute(
                             Route::methods(
                                 $controllerAction->getAnnotation()->getMethods(),
                                 $controllerAction->getAnnotation()->getRoute(),
-                                [$controllerAction->getClass()->getName(), $controllerAction->getMethod()->getShortName()]
+                                [
+                                    $controllerAction->getClass()->getName(),
+                                    $controllerAction->getMethod()->getShortName()
+                                ]
                             )
                         );
                     }
