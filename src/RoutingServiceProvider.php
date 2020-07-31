@@ -20,6 +20,9 @@ class RoutingServiceProvider extends ServiceProvider
         $this->controllersPath = $paths;
     }
 
+    /**
+     * @suppress PhanAccessMethodProtected
+     */
     public function register(Container $container): void
     {
         $aliases = $container->get(Aliases::class);
