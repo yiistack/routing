@@ -29,4 +29,9 @@ final class Controller
     {
         return $this->route;
     }
+
+    public function getMiddlewares(): array
+    {
+        return $this->middlewares;
+    }
 }

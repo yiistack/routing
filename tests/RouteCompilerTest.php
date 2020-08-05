@@ -26,11 +26,12 @@ class RouteCompilerTest extends TestCase
         $rc = new RouteCompiler(new AnnotationLoader(new ClassLocator($finder)));
 
         $routes = $rc->compile();
-        $template = <<<'TEMPLATE'
-<?php return {data};
-TEMPLATE;
+        $template = <<<'EOT'
+<?php
+return %s;
+EOT;
 
-        $template = str_replace('{data}', VarDumper::create($routes)->export(), $template);
+        $template = sprintf($template, VarDumper::create($routes)->export());
         @file_put_contents(__DIR__ . '/runtime/test.php', $template);
 
         $this->assertContainsOnlyInstancesOf(Group::class, $routes);

@@ -13,11 +13,11 @@ use Yiistack\Annotated\AnnotationLoader;
 
 class RoutingServiceProvider extends ServiceProvider
 {
-    private array $controllersPath;
+    private array $controllersPaths;
 
-    public function __construct(array $paths)
+    public function __construct(array $paths = [])
     {
-        $this->controllersPath = $paths;
+        $this->controllersPaths = $paths;
     }
 
     /**
@@ -26,7 +26,7 @@ class RoutingServiceProvider extends ServiceProvider
     public function register(Container $container): void
     {
         $aliases = $container->get(Aliases::class);
-        $paths = array_map(fn($path) => $aliases->get($path), $this->controllersPath);
+        $paths = array_map(fn($path) => $aliases->get($path), $this->controllersPaths);
         $finder = (new Finder())->files()->in($paths)->name('*.php');
         $container->set(AnnotationLoader::class, new AnnotationLoader(new ClassLocator($finder)));
     }
