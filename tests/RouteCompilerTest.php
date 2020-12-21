@@ -22,7 +22,7 @@ class RouteCompilerTest extends TestCase
 
     public function testCompile(): array
     {
-        $finder = Finder::create()->in([__DIR__ . '/Data'])->name('*.php');
+        $finder = Finder::create()->in([__DIR__ . '/Support'])->name('*.php');
         $rc = new RouteCompiler(new AnnotationLoader(new ClassLocator($finder)));
 
         $routes = $rc->compile();

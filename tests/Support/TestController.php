@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Yiistack\Routing\Tests\Data;
+namespace Yiistack\Routing\Tests\Support;
 
 use Yiistack\Routing\Annotation\Controller;
 use Yiistack\Routing\Annotation\Get;
