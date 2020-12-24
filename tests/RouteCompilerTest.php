@@ -39,10 +39,11 @@ EOT;
     }
 
     /**
-     * @param $group
+     * @param $group Group
+     *
      * @dataProvider testCompile
      */
-    public function testCompiledRoutes($group): void
+    public function testCompiledRoutes(Group $group): void
     {
         $this->assertInstanceOf(Group::class, $group);
         $this->assertNotEmpty($group->getItems());

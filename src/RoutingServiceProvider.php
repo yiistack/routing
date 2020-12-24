@@ -21,12 +21,12 @@ class RoutingServiceProvider extends ServiceProvider
     }
 
     /**
-     * @suppress PhanAccessMethodProtected
+     * @psalm-suppress InaccessibleMethod
      */
     public function register(Container $container): void
     {
         $aliases = $container->get(Aliases::class);
-        $paths = array_map(fn($path) => $aliases->get($path), $this->controllersPaths);
+        $paths = array_map(static fn ($path): string => $aliases->get($path), $this->controllersPaths);
         $finder = (new Finder())->files()->in($paths)->name('*.php');
         $container->set(AnnotationLoader::class, new AnnotationLoader(new ClassLocator($finder)));
     }

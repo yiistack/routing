@@ -4,25 +4,29 @@ declare(strict_types=1);
 
 namespace Yiistack\Routing\Annotation;
 
-use Doctrine\Common\Annotations\Annotation\Target;
-
 /**
- * @Annotation
- * @Target("CLASS")
+ * Class Route
+ * @package Yiistack\Routing\Annotation
  */
-final class Controller
+abstract class Route implements RouteAnnotationInterface
 {
     /**
      * @var mixed|string
      * @psalm-suppress PropertyNotSetInConstructor
      */
-    private string $route;
+    protected string $route;
 
     /**
      * @var array
      * @psalm-suppress PropertyNotSetInConstructor
      */
-    private array $middlewares;
+    protected array $methods;
+
+    /**
+     * @var array
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
+    protected array $middlewares;
 
     public function __construct(array $values)
     {
@@ -32,11 +36,19 @@ final class Controller
         if (isset($values['middlewares'])) {
             $this->middlewares = $values['middlewares'];
         }
+        if (isset($values['methods'])) {
+            $this->methods = $values['methods'];
+        }
     }
 
     public function getRoute(): string
     {
         return $this->route;
+    }
+
+    public function getMethods(): array
+    {
+        return $this->methods;
     }
 
     public function getMiddlewares(): array

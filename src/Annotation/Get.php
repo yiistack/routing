@@ -11,24 +11,12 @@ use Yiisoft\Http\Method;
  * @Annotation
  * @Target("METHOD")
  */
-final class Get extends Action
+final class Get extends Route
 {
-    private string $route;
-
     public function __construct(array $values)
     {
-        if (isset($values['value'])) {
-            $this->route = $values['value'];
-        }
-    }
+        $values['methods'] = [Method::GET];
 
-    public function getRoute(): string
-    {
-        return $this->route;
-    }
-
-    public function getMethods(): array
-    {
-        return [Method::GET];
+        parent::__construct($values);
     }
 }

@@ -11,24 +11,12 @@ use Yiisoft\Http\Method;
  * @Annotation
  * @Target("METHOD")
  */
-final class Delete extends Action
+final class Delete extends Route
 {
-    private string $route;
-
     public function __construct(array $values)
     {
-        if (isset($values['value'])) {
-            $this->route = $values['value'];
-        }
-    }
+        $values['methods'] = [Method::DELETE];
 
-    public function getRoute(): string
-    {
-        return $this->route;
-    }
-
-    public function getMethods(): array
-    {
-        return [Method::DELETE];
+        parent::__construct($values);
     }
 }

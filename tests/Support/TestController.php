@@ -10,7 +10,7 @@ use Yiistack\Routing\Annotation\Get;
 /**
  * @Controller("test")
  */
-class TestController
+final class TestController
 {
     /**
      * @Get("/hello")
