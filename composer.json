@@ -31,6 +31,9 @@
         "spatie/phpunit-watcher": "^1.23",
         "vimeo/psalm": "^4.2"
     },
+    "provide": {
+        "yiisoft/router-implementation": "1.0.0"
+    },
     "autoload": {
         "psr-4": {
             "Yiistack\\Routing\\": "src"
