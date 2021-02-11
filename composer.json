@@ -22,7 +22,7 @@
         "yiisoft/di": "^3.0@dev",
         "yiisoft/http": "^1.0@dev",
         "yiisoft/router": "^3.0@dev",
-        "yiisoft/var-dumper": "^3.0@dev",
+        "yiisoft/var-dumper": "^1.0",
         "yiistack/annotated": "^1.0@dev"
     },
     "require-dev": {
