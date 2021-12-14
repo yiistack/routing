@@ -19,8 +19,8 @@
     "require": {
         "php": "^7.4|^8.0",
         "yiisoft/aliases": "^1.0",
-        "yiisoft/di": "^3.0@dev",
-        "yiisoft/http": "^1.0@dev",
+        "yiisoft/di": "^1.0",
+        "yiisoft/http": "^1.2",
         "yiisoft/router": "^3.0@dev",
         "yiisoft/var-dumper": "^1.0",
         "yiistack/annotated": "^1.0@dev"
