@@ -21,7 +21,7 @@
         "yiisoft/aliases": "^1.0",
         "yiisoft/di": "^1.0",
         "yiisoft/http": "^1.2",
-        "yiisoft/router": "^3.0@dev",
+        "yiisoft/router": "^1.0",
         "yiisoft/var-dumper": "^1.0",
         "yiistack/annotated": "^1.0@dev"
     },
